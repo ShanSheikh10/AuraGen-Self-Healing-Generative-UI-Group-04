@@ -11,3 +11,9 @@ AuraGen is designed to observe real-time user interaction friction, communicate 
 - **Frontend**: React
 - **Real-Time Communication**: WebSockets
 - **Intelligence**: LLM-driven UI adaptation engine
+
+### Key Features
+
+- **Friction Detection**: Captures real-time interaction signals such as repeated clicks, delays, and form navigation drop-offs.
+- **Live Telemetry**: Streams client-side events via WebSockets to the adaptation service.
+- **Adaptive UI Generation**: Dynamically re-generates or modifies components to resolve user friction.
