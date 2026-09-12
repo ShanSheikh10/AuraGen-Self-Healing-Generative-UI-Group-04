@@ -8,6 +8,8 @@ import {
 
 import {
   calculateFrictionScore,
+  getFrictionLevel,
+  shouldAdaptUI,
   FrictionEvent,
   initialFrictionMetrics,
   FrictionMetrics,
@@ -19,6 +21,9 @@ export default function Home() {
   );
 
   const [frictionScore, setFrictionScore] = useState(0);
+
+  const frictionLevel = getFrictionLevel(frictionScore);
+  const adaptationTriggered = shouldAdaptUI(frictionScore);
 
   const [events, setEvents] = useState<FrictionEvent[]>([]);
 
@@ -213,7 +218,7 @@ export default function Home() {
             </div>
 
             <div className="text-right">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-700">
                 Friction Score
               </p>
 
@@ -221,6 +226,27 @@ export default function Home() {
                 {frictionScore}/100
               </p>
             </div>
+
+            <div className="text-right">
+              <p className="text-sm text-gray-700">
+                Friction Level
+              </p>
+
+              <p className="text-lg font-bold text-gray-600">
+                {frictionLevel}
+              </p>
+            </div>
+
+            <div className="text-right">
+              <p className="text-sm text-gray-700">
+                Adaptive UI
+              </p>
+
+              <p className="text-lg font-bold text-gray-600">
+                {adaptationTriggered ? "Triggered" : "Not Triggered"}
+              </p>
+            </div>
+
           </div>
 
           <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">

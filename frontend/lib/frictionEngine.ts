@@ -21,6 +21,12 @@ export type FrictionMetrics = {
   totalDwellTime: number;
 };
 
+export type FrictionLevel =
+  | "Low"
+  | "Moderate"
+  | "High"
+  | "Critical";
+
 export const initialFrictionMetrics: FrictionMetrics = {
   fieldFocuses: 0,
   hesitations: 0,
@@ -57,4 +63,28 @@ export function calculateFrictionScore(
       dwellScore,
     100
   );
+}
+
+export function getFrictionLevel(
+  score: number
+): FrictionLevel {
+  if (score >= 80) {
+    return "Critical";
+  }
+
+  if (score >= 60) {
+    return "High";
+  }
+
+  if (score >= 30) {
+    return "Moderate";
+  }
+
+  return "Low";
+}
+
+export function shouldAdaptUI(
+  score: number
+): boolean {
+  return score >= 60;
 }
