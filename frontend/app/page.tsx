@@ -15,6 +15,8 @@ import {
   FrictionMetrics,
 } from "../lib/frictionEngine";
 
+import { sendFrictionEvent } from "../lib/api";
+
 export default function Home() {
   const [stats, setStats] = useState<FrictionMetrics>(
     initialFrictionMetrics
@@ -52,6 +54,10 @@ export default function Home() {
       ...previous,
       interactionEvent,
     ]);
+
+    sendFrictionEvent(interactionEvent).catch((error) => {
+     console.error("Failed to send friction event:", error);
+    });
 
     setStats((previous) => ({
       ...previous,
